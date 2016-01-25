@@ -1,0 +1,21 @@
+extends layout
+
+block content
+  script.
+    function hentHelloWorld(){
+      console.log("hello world");
+
+      var xmlHttp = new XMLHttpRequest();
+
+      xmlHttp.onreadystatechange = function(){
+        if(xmlHttp.readyState == 4 && xmlHttp.status == 200){
+          document.getElementById("helloworld").innerHTML = xmlHttp.responseText;
+        }
+      };
+
+      xmlHttp.open("GET", "/helloworld", true);
+      xmlHttp.send();
+    }
+
+  input(type="submit" onClick="hentHelloWorld()")
+  h1(id="helloworld")
